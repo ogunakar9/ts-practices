@@ -30,21 +30,46 @@ class Department {
   }
 
   printEmployeeInformation() {
-    console.log(this.employees.length);
+    console.log(this.employees.length, this.employees);
   }
 }
 
-const accounting = new Department("d1", "Accounting");
-// console.log(accounting);
+class ITDepartment extends Department {
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT");
+  }
+}
 
-accounting.addEmployee("Max");
-accounting.addEmployee("Manu");
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+
+  addReports(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment("d1", ["Max"]);
+
+it.addEmployee("Max");
+it.addEmployee("Manu");
 
 //cannot push like this due to employees being private
-// accounting.employees[2] = "Anna";
+// it.employees[2] = "Anna";
 
-accounting.describe();
-accounting.printEmployeeInformation();
+it.describe();
+it.printEmployeeInformation();
+
+console.log(it);
 
 // const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 // accountingCopy.describe();
+
+const accounting = new AccountingDepartment("d2", []);
+accounting.addReports("Something went wrong...");
+accounting.printReports();
