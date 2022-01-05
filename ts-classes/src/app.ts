@@ -16,11 +16,16 @@ class Department {
   // private employees: string[] = [];
   // using protected instead of private to give access to
   // inheriting classes, still not changeable though
+  static fiscalYear = 2021;
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.name = n;
     // this.id = id;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -82,6 +87,9 @@ class AccountingDepartment extends Department {
     this.employees.push(name);
   }
 }
+
+const employee1 = Department.createEmployee("Max");
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment("d1", ["Max"]);
 
