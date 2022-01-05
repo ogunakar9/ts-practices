@@ -12,7 +12,11 @@
 class Department {
   // private id: string;
   // private name: string;
-  private employees: string[] = [];
+
+  // private employees: string[] = [];
+  // using protected instead of private to give access to
+  // inheriting classes, still not changeable though
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.name = n;
@@ -52,6 +56,13 @@ class AccountingDepartment extends Department {
   printReports() {
     console.log(this.reports);
   }
+
+  addEmployee(name: string) {
+    if (name === "Max") {
+      return;
+    }
+    this.employees.push(name);
+  }
 }
 
 const it = new ITDepartment("d1", ["Max"]);
@@ -73,3 +84,6 @@ console.log(it);
 const accounting = new AccountingDepartment("d2", []);
 accounting.addReports("Something went wrong...");
 accounting.printReports();
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+accounting.printEmployeeInformation();
