@@ -17,6 +17,17 @@ const e1: ElevatedEmployee = {
   startDate: new Date(),
 };
 
+type UnknownEmployee = Admin | Employee;
+
+function printEmployeeInformation(emp: UnknownEmployee) {
+  if ("priviledges" in emp) {
+    console.log("Priviledges: ", emp.priviledges);
+  }
+  if ("startDate" in emp) {
+    console.log("Start Date: ", emp.startDate);
+  }
+}
+
 type Combinable = string | number;
 type Numeric = number | boolean;
 type Universal = Combinable & Numeric;
@@ -36,16 +47,13 @@ const result = add("mercurial", " opaqueness");
 result.split(" ");
 console.log(result);
 
-type UnknownEmployee = Admin | Employee;
+const fetchedUserData = {
+  id: "u1",
+  name: "michael",
+  job: { title: "CEO", description: "My own company" },
+};
 
-function printEmployeeInformation(emp: UnknownEmployee) {
-  if ("priviledges" in emp) {
-    console.log("Priviledges: ", emp.priviledges);
-  }
-  if ("startDate" in emp) {
-    console.log("Start Date: ", emp.startDate);
-  }
-}
+console.log(fetchedUserData?.job?.title);
 
 class Truck {
   drive() {
