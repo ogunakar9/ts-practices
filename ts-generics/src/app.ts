@@ -58,3 +58,23 @@ class DataStorage<T extends string | number | boolean> {
 
 const textStorage = new DataStorage<string>();
 textStorage.addItem("important item");
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+//partial is a built in type that wraps another type and changes properties to optional
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+
+  return courseGoal as CourseGoal;
+}
