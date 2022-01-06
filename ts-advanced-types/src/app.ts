@@ -55,6 +55,12 @@ const fetchedUserData = {
 
 console.log(fetchedUserData?.job?.title);
 
+//nullish coalescing "??" operator only works on undefined or null values
+const userInput = "undefined";
+const storedData = userInput ?? "DEFAULT";
+
+console.log("stored data >>", storedData);
+
 class Truck {
   drive() {
     console.log("driving");
