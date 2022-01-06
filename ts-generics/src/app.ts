@@ -78,3 +78,8 @@ function createCourseGoal(
 
   return courseGoal as CourseGoal;
 }
+
+const names: Readonly<string[]> = ["max", "anna"];
+// cannot perform operations since readonly generic utility type stops
+// names.push("manu");
+// names.pop();
