@@ -103,3 +103,13 @@ const userInputElement = document.getElementById("text-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hey there stranger";
 }
+
+interface ErrorContainer {
+  //email: "not a valid mail", phone: "bad phone"
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Please enter a valid email address",
+  phone: "Invalid phone entry",
+};
