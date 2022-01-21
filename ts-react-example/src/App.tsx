@@ -6,12 +6,21 @@ const App: React.FC = () => {
   const [todos, setTodos] = useState<{ id: string; text: string }[]>([]);
   // const todos = [{ id: "t1", text: "Finish the course" }];
   const todoAddHandler = (text: string) => {
-    setTodos([{ id: Math.random().toString(), text: text }]);
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { id: Math.random().toString(), text: text },
+    ]);
+  };
+
+  const todoDeleteHandler = (id: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
   };
   return (
     <div className="App">
       <NewToDo onAddTodo={todoAddHandler} />
-      <ToDoList items={todos} />
+      <ToDoList items={todos} onDeleteTodo={todoDeleteHandler} />
     </div>
   );
 };
